@@ -10,22 +10,10 @@ var wrongArray = [];
 console.log(answer);
  
 //Function for showing lives left
-function timeToLoss() {
+function startGame() {
     document.getElementById("livesLeft").innerHTML = "Lives Left: " + lives;
-}
-
-//Function for showing used letters array
-function badGuess() {
     document.getElementById("wrongs").innerHTML = "Letters Used: " + wrongArray.join(", ");
-}
-
-//Function for showing win total
-function winTotal() {
     document.getElementById("winning").innerHTML = "You've won " + wins + " times";
-}
-
-//Function for showing loss total
-function lossTotal() {
     document.getElementById("losing").innerHTML = "You've lost " + losses + " times";
 }
 
@@ -39,7 +27,7 @@ function reset() {
 
 //On key up funtion to begin the game
 document.onkeyup = function(event) {
-    document.getElementById("hide").style.display = "block";
+    document.getElementById("hide").style.display = "none";
     var guess = String.fromCharCode(event.keyCode).toLowerCase();
     wrongArray.push(guess);
     if (guess === answer) {
@@ -51,9 +39,6 @@ document.onkeyup = function(event) {
         losses++;
         reset();
     }
-    timeToLoss();
-    badGuess();
-    winTotal();
-    lossTotal();
+    startGame();
     lives--;
 }
